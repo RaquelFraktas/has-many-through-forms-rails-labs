@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.destroy_all
+Post.destroy_all
+
+5.times do
+  @user = User.create(username: Faker::Internet.username, email: Faker::Internet.email)
+  3.times do
+    @post = Post.create(title: Faker::Book.title, content: Faker::Lorem.sentence(word_count: 5))
+    @user.posts << @post
+  end
+end
+
+puts "data has been seeded"
+
